@@ -12,6 +12,7 @@ public class RestAssuredTest extends BaseTest{
     public void makeGetRequest(){
         ValidatableResponse response = RequestUtil.get("users");
         Assert.assertEquals(response.extract().statusCode(), HttpStatus.SC_OK);
+        ResponseUtil.validateResponseAgainstJsonSchema(response,"schema/RequestSchema.json");
         System.out.println(response.extract().response().prettyPrint());
     }
 
